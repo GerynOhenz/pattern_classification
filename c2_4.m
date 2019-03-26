@@ -14,7 +14,7 @@ for i=1:3
     mu(i, :)=mean(xi, 1);
     sigma(:, :, i)=cov(xi);
 end
-P=[0.8, 0.1, 0.1];
+P=[1/3, 1/3, 1/3];
 testp=[1, 2, 1; 5, 3, 2; 0, 0, 0; 1, 0, 0];
 r=zeros(size(testp, 1), 3);
 
@@ -34,11 +34,15 @@ for i=1:size(testp, 1)
     [tmp, type(i)]=max(g);
 end
 
-plot3(testp(type==1, 1), testp(type==1, 2), testp(type==1, 3), 'ro');
+plot3(testp(type==1, 1), testp(type==1, 2), testp(type==1, 3), 'ro', 'displayname', '\omega 1');
 hold on
-plot3(testp(type==2, 1), testp(type==2, 2), testp(type==2, 3), 'bo');
-hold on
-plot3(testp(type==3, 1), testp(type==3, 2), testp(type==3, 3), 'go');
+plot3(testp(type==2, 1), testp(type==2, 2), testp(type==2, 3), 'bo', 'displayname', '\omega 2');
+plot3(testp(type==3, 1), testp(type==3, 2), testp(type==3, 3), 'go', 'displayname', '\omega 3');
+xlabel('x1');
+ylabel('x2');
+zlabel('x3');
+legend;
+hold off
 
 %misclassificaiton
 miscnt=0;

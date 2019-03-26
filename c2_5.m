@@ -22,6 +22,8 @@ function rand_and_calc(m)
         cnt=cnt+size(rx, 2);
     end
     histogram(x);
+    xlabel('x');
+    ylabel('times');
     fprintf('mean: %f\n standard deviation: %f\n', mean(x), sqrt(cov(x')));
 end
 

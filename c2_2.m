@@ -15,7 +15,7 @@ for i=1:3
     sigma(:, :, i)=cov(xi);
 end
 P=[1/2, 1/2, 0];
-x=mvnrnd(mean([mu(1, :); mu(2, :)], 1), sigma(:, :, 1)+sigma(:, :, 2), 5000);
+x=mvnrnd(mean([mu(1, :); mu(2, :)], 1), (sigma(:, :, 1)+sigma(:, :, 2))/2, 5000);
 type=ones(1, size(x, 1));
 g=zeros(1, 2);
 for i=1:size(x, 1)
@@ -25,9 +25,14 @@ for i=1:size(x, 1)
     [tmp, type(i)]=max(g);
 end
 
-plot3(x(type==1, 1), x(type==1, 2), x(type==1, 3), 'r.');
+plot3(x(type==1, 1), x(type==1, 2), x(type==1, 3), 'r.', 'displayname', '\omega 1');
 hold on
-plot3(x(type==2, 1), x(type==2, 2), x(type==2, 3), 'b.');
+plot3(x(type==2, 1), x(type==2, 2), x(type==2, 3), 'b.', 'displayname', '\omega 2');
+xlabel('x1');
+ylabel('x2');
+zlabel('x3');
+legend;
+hold off
 
 %misclassificaiton
 miscnt=0;
