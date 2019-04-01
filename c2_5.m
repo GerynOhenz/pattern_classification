@@ -11,14 +11,14 @@ fprintf('1000000 samples\n');
 rand_and_calc(1000000);
 
 function rand_and_calc(m)
-    x=zeros(1, m);
+    x=zeros(1, 0);
     cnt=0;
     while (cnt<m)
         rx=rand3();
         if (cnt+size(rx, 2)>m)
             rx=rx(1:m-cnt);
         end
-        x(cnt+1:cnt+size(rx, 2))=rx;
+        x=[x, mean(rx)];
         cnt=cnt+size(rx, 2);
     end
     histogram(x);
